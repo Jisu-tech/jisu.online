@@ -6,7 +6,7 @@
     <title>Jisu Mondal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,21 +21,171 @@
             background: #ffffff;
         }
         
+        /* ========================================
+           ULTRA-TRANSLUCENT NAVBAR
+           ======================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: saturate(200%) blur(30px);
+            -webkit-backdrop-filter: saturate(200%) blur(30px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: 0 1px 20px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 14px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+        
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, #1a1a1a, #444);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text {
+            letter-spacing: -0.3px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 36px;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.2s ease;
+            padding: 6px 0;
+        }
+        
+        .nav-links a:hover {
+            color: #1a1a1a;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #1a1a1a;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: #1a1a1a;
+            color: white;
+            padding: 9px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        
+        .nav-cta:hover {
+            background: #0066cc;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #1a1a1a;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+        
         .container {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 40px;
+            padding: 120px 40px 60px 40px;
         }
         
         /* HEADER */
         .header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 50px;
-        margin-bottom: 80px;
-        padding-bottom: 60px;
-        border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 80px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid #e5e5e5;
         }
         
         .profile-pic {
@@ -126,10 +276,24 @@
         
         /* BIO */
         .bio-text {
-        font-size: 17px;
-        color: #333;
-        line-height: 1.8;
-        max-width: 100%;
+            font-size: 19px;
+            color: #2a2a2a;
+            line-height: 1.7;
+            max-width: 100%;
+            font-weight: 300;
+        }
+        
+        .bio-text strong {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .bio-text .highlight {
+            background: linear-gradient(120deg, rgba(0,102,204,0.08) 0%, rgba(0,102,204,0.12) 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: #1a1a1a;
         }
         
         .bio-text a {
@@ -137,6 +301,7 @@
             border-bottom: 1px solid #999;
             text-decoration: none;
             font-weight: 500;
+            transition: all 0.2s;
         }
         
         .bio-text a:hover {
@@ -144,76 +309,455 @@
             border-color: #0066cc;
         }
         
-        /* TIMELINE */
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 120px 70px 1fr;
-            gap: 25px;
-            margin-bottom: 50px;
+        /* ========================================
+           VERTICAL TIMELINE EXPERIENCE
+           ======================================== */
+        .timeline {
             position: relative;
+            padding-left: 0;
         }
         
-        .timeline-date {
-            color: #999;
-            font-size: 14px;
-            padding-top: 10px;
-            text-align: right;
-            font-weight: 400;
+        /* Vertical line */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 39px;
+            top: 20px;
+            bottom: 20px;
+            width: 2px;
+            background: linear-gradient(to bottom, #e0e0e0 0%, #e0e0e0 95%, transparent 100%);
+            z-index: 0;
         }
         
-        .timeline-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 8px;
-            background: #f5f5f5;
+        .timeline-entry {
+            position: relative;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-entry:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Logo dot on timeline */
+        .timeline-marker {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            background: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            color: #1a1a1a;
-            font-size: 11px;
-            text-align: center;
-            border: 1px solid #e0e0e0;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8e8e8;
+            overflow: hidden;
             flex-shrink: 0;
         }
         
-        .timeline-logo.dsrt {
-            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-            color: white;
+        .timeline-marker img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
-        .timeline-logo.robotic {
-            background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
-            color: white;
-        }
-        
-        .timeline-content {
+        .timeline-marker.text {
+            font-weight: 800;
             font-size: 16px;
-            color: #333;
-            line-height: 1.75;
+            color: white;
+            letter-spacing: 0.5px;
         }
         
-        .timeline-content a {
+        .timeline-marker.dsrt {
+            background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%);
+        }
+        
+        .timeline-marker.robotic {
+            background: linear-gradient(135deg, #0066cc 0%, #003d7a 100%);
+        }
+        
+        /* Main entry card */
+        .timeline-card {
+            background: #ffffff;
+            border: 1px solid #ebebeb;
+            border-radius: 16px;
+            padding: 28px 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-card:hover {
+            border-color: #d0d0d0;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+        }
+        
+        .timeline-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        
+        .timeline-title-block h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.4px;
+            margin-bottom: 4px;
+        }
+        
+        .timeline-role {
+            font-size: 14px;
+            color: #0066cc;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .timeline-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        
+        .timeline-period {
+            font-size: 13px;
+            color: #888;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+        
+        .timeline-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #00875a;
+            background: #e8f5ee;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .timeline-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #00875a;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 135, 90, 0.4); }
+            50% { opacity: 0.6; box-shadow: 0 0 0 4px rgba(0, 135, 90, 0); }
+        }
+        
+        .timeline-description {
+            font-size: 15.5px;
+            color: #3a3a3a;
+            line-height: 1.7;
+            margin-top: 14px;
+        }
+        
+        .timeline-description a {
             color: #1a1a1a;
             border-bottom: 1px solid #999;
             text-decoration: none;
             font-weight: 500;
         }
         
-        .timeline-content a:hover {
+        .timeline-description a:hover {
             color: #0066cc;
             border-color: #0066cc;
         }
         
-        .timeline-content ol {
-            margin: 12px 0 12px 24px;
+        .timeline-description strong {
+            color: #1a1a1a;
+            font-weight: 600;
         }
         
-        .timeline-content ol li {
+        /* ========================================
+           SUB-TIMELINE (PROJECTS UNDER EXPERIENCE)
+           ======================================== */
+        .sub-timeline-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 28px 0 18px 0;
+            font-size: 12px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .sub-timeline-label::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: #ddd;
+        }
+        
+        .sub-timeline {
+            position: relative;
+            padding-left: 22px;
+            border-left: 2px dashed #e8e8e8;
+        }
+        
+        .sub-entry {
+            position: relative;
+            padding: 20px 0 20px 24px;
             margin-bottom: 8px;
         }
         
-        /* PROJECTS */
+        .sub-entry:last-child {
+            padding-bottom: 0;
+        }
+        
+        /* Connector dot */
+        .sub-entry::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 32px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #ccc;
+            z-index: 2;
+        }
+        
+        .sub-entry.grid::before { border-color: #0066cc; }
+        .sub-entry.fault::before { border-color: #cc0000; }
+        .sub-entry.sim::before { border-color: #008844; }
+        .sub-entry.intel::before { border-color: #6600cc; }
+        .sub-entry.ceos::before { border-color: #ff6600; }
+        .sub-entry.wae::before { border-color: #00aacc; }
+        
+        .sub-card {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 20px;
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .sub-card:hover {
+            background: #fff;
+            border-color: #d8d8d8;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05);
+            transform: translateX(4px);
+        }
+        
+        /* Project image area */
+        .sub-image {
+            width: 110px;
+            height: 110px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .sub-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .sub-image.grid { background: linear-gradient(135deg, #0066cc, #003366); }
+        .sub-image.fault { background: linear-gradient(135deg, #cc0000, #660000); }
+        .sub-image.sim { background: linear-gradient(135deg, #008844, #004422); }
+        .sub-image.intel { background: linear-gradient(135deg, #6600cc, #330066); }
+        .sub-image.ceos { background: linear-gradient(135deg, #ff6600, #993d00); }
+        .sub-image.wae { background: linear-gradient(135deg, #00aacc, #006680); }
+        
+        .sub-image-fallback {
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+        
+        .sub-content h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+            letter-spacing: -0.2px;
+        }
+        
+        .sub-tagline {
+            font-size: 12px;
+            color: #888;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .sub-description {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.65;
+            margin-bottom: 10px;
+        }
+        
+        .sub-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+        
+        .sub-tech-tag {
+            font-size: 11px;
+            color: #666;
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        
+        .sub-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .sub-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* ========================================
+           EDUCATION
+           ======================================== */
+        .edu-card {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .edu-card:hover {
+            background: #ffffff;
+            border-color: #ddd;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+        
+        .edu-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        
+        .edu-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 15px;
+            color: white;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        }
+        
+        .edu-logo.school {
+            background: linear-gradient(135deg, #8e44ad, #5e3370);
+        }
+        
+        .edu-date {
+            font-size: 12px;
+            color: #888;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .edu-right h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
+        }
+        
+        .edu-institution {
+            font-size: 15px;
+            color: #0066cc;
+            font-weight: 500;
+            margin-bottom: 14px;
+        }
+        
+        .edu-description {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.75;
+        }
+        
+        .edu-description strong {
+            color: #1a1a1a;
+        }
+        
+        .edu-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+        
+        .edu-tag {
+            display: inline-block;
+            font-size: 12px;
+            color: #555;
+            background: white;
+            padding: 4px 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .edu-tag.achievement {
+            background: linear-gradient(135deg, #fff5e6, #ffe6cc);
+            color: #b8860b;
+            border-color: #f5d99a;
+        }
+        
+        /* ========================================
+           PROJECTS, TEACHING, WRITING (Unchanged)
+           ======================================== */
         .project {
             display: grid;
             grid-template-columns: 100px 1fr;
@@ -288,18 +832,6 @@
             text-decoration: underline;
         }
         
-        .tech-stack {
-            display: inline-block;
-            font-size: 12px;
-            color: #666;
-            background: #f5f5f5;
-            padding: 3px 10px;
-            border-radius: 4px;
-            margin-right: 6px;
-            margin-top: 8px;
-        }
-        
-        /* TEACHING */
         .teaching-item {
             padding: 20px 0;
             border-bottom: 1px solid #f0f0f0;
@@ -320,7 +852,6 @@
             font-size: 15px;
         }
         
-        /* WRITING */
         .writing-list {
             font-size: 16px;
             color: #333;
@@ -346,7 +877,6 @@
             border-color: #0066cc;
         }
         
-        /* FOOTER */
         .footer {
             margin-top: 80px;
             padding-top: 40px;
@@ -356,24 +886,152 @@
             font-size: 14px;
         }
         
-        /* RESPONSIVE */
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 900px) {
+            .nav-container { padding: 14px 20px; }
+            
+            .nav-links {
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                flex-direction: column;
+                padding: 30px 40px;
+                gap: 24px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-links.active { transform: translateY(0); }
+            .nav-cta { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .logo-text { display: none; }
+        }
+        
         @media (max-width: 768px) {
-            .container { padding: 40px 20px; }
-            .header { flex-direction: column; text-align: center; gap: 30px; }
+            .container { padding: 100px 20px 40px 20px; }
+            
+            .header { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 30px; 
+                align-items: center;
+            }
+            
+            .header-text {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            
             .header-text h1 { font-size: 40px; }
             .profile-pic { width: 180px; height: 180px; }
-            .timeline-item { grid-template-columns: 1fr; gap: 12px; }
-            .timeline-date { text-align: left; padding-top: 0; }
+            .subtitle { text-align: center; }
+            
+            .social-icons {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            /* Timeline mobile */
+            .timeline::before {
+                left: 27px;
+            }
+            
+            .timeline-entry {
+                grid-template-columns: 56px 1fr;
+                gap: 18px;
+            }
+            
+            .timeline-marker {
+                width: 56px;
+                height: 56px;
+                border-radius: 14px;
+                font-size: 12px;
+            }
+            
+            .timeline-card {
+                padding: 20px;
+            }
+            
+            .timeline-title-block h3 {
+                font-size: 20px;
+            }
+            
+            .sub-card {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            
+            .sub-image {
+                width: 100%;
+                height: 160px;
+            }
+            
+            .edu-card { 
+                grid-template-columns: 1fr; 
+                gap: 20px;
+                padding: 24px;
+            }
+            
+            .edu-left {
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            
+            .edu-logo {
+                width: 64px;
+                height: 64px;
+                font-size: 14px;
+            }
+            
             .project { grid-template-columns: 1fr; }
             .section-title { font-size: 28px; }
+            .bio-text { font-size: 17px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- TRANSLUCENT NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-mark">JM</span>
+                <span class="logo-text">Jisu Mondal</span>
+            </a>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#writing">Blogs</a></li>
+                <li><a href="#teaching">Tech Docs</a></li>
+                <li><a href="#experience">Company</a></li>
+                <li><a href="https://x.com/Real_Jisu" target="_blank">Social</a></li>
+            </ul>
+            
+            <a href="mailto:jisumondal001@gmail.com" class="nav-cta">Get in touch</a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
     <div class="container">
         
         <!-- HEADER -->
-        <header class="header">
+        <header class="header" id="home">
             <img src="profile.png" alt="Jisu Mondal" class="profile-pic">
             <div class="header-text">
                 <h1>Jisu Mondal</h1>
@@ -408,180 +1066,373 @@
         <section class="section">
             <h2 class="section-title">bio</h2>
             <p class="bio-text">
-                Jisu is an AI researcher, founder, and educator working at the intersection of artificial intelligence and hardware. He is a founding member of <a href="https://dsrtai.com/">Robotic Rocks</a>, where the mission is to build AI-native hardware for enterprises. He later founded <a href="https://dsrtai.com/">DSRT AI Systems</a> — a <a href="https://dsrtai.com/">Robotic Rocks</a> venture focused on developing automation infrastructure and AI products that power modern enterprises. Alongside building, Jisu teaches deep neural networks, transformer architectures, and frontier AI concepts to the next generation of engineers. His active research interests in advanced AI infrastucture and algorithums
+                I'm Jisu — an <strong>AI researcher, founder, and educator</strong> building at the edge of <span class="highlight">intelligence and hardware</span>. I started <a href="https://dsrtai.com/">Robotic Rocks</a> with the ambition to build <strong>AI-native hardware and autonomous systems</strong>, and launched <a href="https://dsrtai.com/">DSRT AI Systems</a> as its venture — designing industrial-grade AI and automation products. When I'm not building, I teach <strong>deep neural networks</strong>, <strong>transformer architectures</strong>, and <strong>frontier AI</strong> to engineers who want to go beyond APIs.
             </p>
         </section>
 
-        <!-- EXPERIENCE / WORK TIMELINE -->
-        <section class="section">
+        <!-- ========================================
+             EXPERIENCE - VERTICAL TIMELINE
+             ======================================== -->
+        <section class="section" id="experience">
             <h2 class="section-title">experience</h2>
             
-            <div class="timeline-item">
-                <div class="timeline-date">2025 — Present</div>
-                <div class="timeline-logo dsrt">DSRT</div>
-                <div class="timeline-content">
-                    Founded <a href="#">DSRT AI Systems</a> as a Robotic Rocks venture focused on building intelligent automation infrastructure for industrial enterprises. DSRT develops AI systems for problems where domain knowledge and machine learning must combine — power systems, signal intelligence, scientific computing, and multi-source analysis.
-                    <br><br>
-                    Current technical focus areas:
-                    <ol>
-                        <li><a href="#">DSRT GRID</a> — Non-intrusive load monitoring for smart grid intelligence. Reads the full electrical signature of a building from a single meter point.</li>
-                        <li><a href="#">DSRT FAULT</a> — Graph neural networks for real-time power grid state estimation under adversarial conditions, including cyberattack detection.</li>
-                        <li><a href="#">DSRT SIM</a> — Neural surrogate models replacing traditional SPICE-based circuit simulation. 1000x speedup while preserving physical accuracy.</li>
-                        <li><a href="#">DSRT INTEL</a> — Multi-source intelligence system fusing technical literature, satellite data, regulatory filings, and economic indicators into structured industrial intelligence assessments.</li>
-                    </ol>
-                    All systems are deployed, open source, and built from first principles.
+            <div class="timeline">
+                
+                <!-- DSRT AI SYSTEMS -->
+                <div class="timeline-entry">
+                    <div class="timeline-marker dsrt text">
+                        <img src="logos/dsrt-logo.png" alt="DSRT" onerror="this.style.display='none'; this.parentElement.innerHTML='DSRT';">
+                    </div>
+                    
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title-block">
+                                <h3>DSRT AI Systems</h3>
+                                <p class="timeline-role">Founder & CEO</p>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="timeline-period">2025 — Present</span>
+                                <span class="timeline-status">Active</span>
+                            </div>
+                        </div>
+                        
+                        <p class="timeline-description">
+                            A <a href="#">Robotic Rocks</a> venture building <strong>industrial-grade AI and automation infrastructure</strong>. DSRT develops production-ready systems where domain knowledge and machine learning intersect — power systems, signal intelligence, scientific computing, and multi-source analysis. Every system is built from first principles, deployed end-to-end, and open-sourced.
+                        </p>
+                        
+                        <!-- SUB-TIMELINE: DSRT PRODUCTS -->
+                        <div class="sub-timeline-label">Products & Systems Built</div>
+                        
+                        <div class="sub-timeline">
+                            
+                            <!-- DSRT GRID -->
+                            <div class="sub-entry grid">
+                                <div class="sub-card">
+                                    <div class="sub-image grid">
+                                        <img src="logos/dsrt-grid.png" alt="DSRT GRID" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=sub-image-fallback>DSRT<br>GRID</div>';">
+                                    </div>
+                                    <div class="sub-content">
+                                        <h4>DSRT GRID</h4>
+                                        <p class="sub-tagline">Non-Intrusive Load Monitoring</p>
+                                        <p class="sub-description">
+                                            A signal intelligence system that disaggregates total electrical consumption from a single main meter into appliance-level usage — no per-appliance sensors required. Built a hybrid <strong>1D CNN + Transformer</strong> architecture for sequence-to-sequence disaggregation with energy conservation baked into the loss function, plus Monte Carlo Dropout for calibrated confidence intervals on every prediction.
+                                        </p>
+                                        <div class="sub-tech">
+                                            <span class="sub-tech-tag">PyTorch</span>
+                                            <span class="sub-tech-tag">CNN + Transformer</span>
+                                            <span class="sub-tech-tag">UK-DALE</span>
+                                            <span class="sub-tech-tag">FastAPI</span>
+                                            <span class="sub-tech-tag">Docker</span>
+                                        </div>
+                                        <a href="#projects" class="sub-link">Read full case study →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- DSRT FAULT -->
+                            <div class="sub-entry fault">
+                                <div class="sub-card">
+                                    <div class="sub-image fault">
+                                        <img src="logos/dsrt-fault.png" alt="DSRT FAULT" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=sub-image-fallback>DSRT<br>FAULT</div>';">
+                                    </div>
+                                    <div class="sub-content">
+                                        <h4>DSRT FAULT</h4>
+                                        <p class="sub-tagline">Adversarial-Robust Grid State Estimation</p>
+                                        <p class="sub-description">
+                                            A <strong>Graph Attention Network</strong> for real-time estimation of complete power grid state — voltage magnitude and phase angle at every bus — from noisy and potentially adversarial sensor readings. Trained on 100K scenarios across IEEE 14, 30, and 118-bus systems with physics-informed loss encoding Kirchhoff's laws, plus adversarial training to survive cyberattack scenarios that break traditional estimators.
+                                        </p>
+                                        <div class="sub-tech">
+                                            <span class="sub-tech-tag">PyTorch Geometric</span>
+                                            <span class="sub-tech-tag">GAT</span>
+                                            <span class="sub-tech-tag">Physics-Informed</span>
+                                            <span class="sub-tech-tag">PYPOWER</span>
+                                            <span class="sub-tech-tag">Adversarial Training</span>
+                                        </div>
+                                        <a href="#projects" class="sub-link">Read full case study →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- DSRT SIM -->
+                            <div class="sub-entry sim">
+                                <div class="sub-card">
+                                    <div class="sub-image sim">
+                                        <img src="logos/dsrt-sim.png" alt="DSRT SIM" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=sub-image-fallback>DSRT<br>SIM</div>';">
+                                    </div>
+                                    <div class="sub-content">
+                                        <h4>DSRT SIM</h4>
+                                        <p class="sub-tagline">Neural Surrogate for Circuit Simulation</p>
+                                        <p class="sub-description">
+                                            A physics-informed neural network that replaces SPICE-based circuit simulation. Predicts circuit waveforms <strong>1000× faster</strong> than NGSpice while preserving physical accuracy and generalizing to unseen topologies. Built around a <strong>Fourier Neural Operator</strong> — chosen because circuit responses live naturally in frequency space — with full end-to-end differentiability enabling gradient-based circuit optimization.
+                                        </p>
+                                        <div class="sub-tech">
+                                            <span class="sub-tech-tag">Fourier Neural Operator</span>
+                                            <span class="sub-tech-tag">PINN</span>
+                                            <span class="sub-tech-tag">NGSpice</span>
+                                            <span class="sub-tech-tag">PyTorch</span>
+                                            <span class="sub-tech-tag">Differentiable</span>
+                                        </div>
+                                        <a href="#projects" class="sub-link">Read full case study →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- DSRT INTEL -->
+                            <div class="sub-entry intel">
+                                <div class="sub-card">
+                                    <div class="sub-image intel">
+                                        <img src="logos/dsrt-intel.png" alt="DSRT INTEL" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=sub-image-fallback>DSRT<br>INTEL</div>';">
+                                    </div>
+                                    <div class="sub-content">
+                                        <h4>DSRT INTEL</h4>
+                                        <p class="sub-tagline">Multi-Source Technical Intelligence</p>
+                                        <p class="sub-description">
+                                            A multi-agent AI system that fuses technical literature, satellite imagery, regulatory filings, and economic indicators into structured intelligence assessments. Built on <strong>LangGraph</strong> with separate research, analysis, verification, and writing agents. Fine-tuned <strong>Llama 3.1 8B</strong> with QLoRA, combined with advanced RAG (hybrid retrieval + cross-encoder reranking + HyDE) and a knowledge graph for temporal reasoning. Every output is cited.
+                                        </p>
+                                        <div class="sub-tech">
+                                            <span class="sub-tech-tag">LangGraph</span>
+                                            <span class="sub-tech-tag">Llama 3.1 + QLoRA</span>
+                                            <span class="sub-tech-tag">Advanced RAG</span>
+                                            <span class="sub-tech-tag">Knowledge Graph</span>
+                                            <span class="sub-tech-tag">Multi-Agent</span>
+                                        </div>
+                                        <a href="#projects" class="sub-link">Read full case study →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- DSRT CEOS -->
+                            <div class="sub-entry ceos">
+                                <div class="sub-card">
+                                    <div class="sub-image ceos">
+                                        <img src="logos/dsrt-ceos.png" alt="DSRT CEOS" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=sub-image-fallback>DSRT<br>CEOS</div>';">
+                                    </div>
+                                    <div class="sub-content">
+                                        <h4>DSRT CEOS</h4>
+                                        <p class="sub-tagline">Construction Enterprise Operating System</p>
+                                        <p class="sub-description">
+                                            An early ambitious attempt at building a unified OS for construction enterprises — covering project management, resource allocation, financial tracking, compliance, and on-site coordination in one integrated platform. Designed the full data model spanning projects, contracts, equipment, and personnel. The execution gap exposed the engineering depth required for enterprise platforms — <strong>directly shaping DSRT's current philosophy</strong>: build the foundation deeply before the platform.
+                                        </p>
+                                        <div class="sub-tech">
+                                            <span class="sub-tech-tag">Conceptual Prototype</span>
+                                            <span class="sub-tech-tag">Data Modeling</span>
+                                            <span class="sub-tech-tag">Foundation</span>
+                                        </div>
+                                        <a href="#projects" class="sub-link">Read the lessons →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- DSRT WAE -->
+                            <div class="sub-entry wae">
+                                <div class="sub-card">
+                                    <div class="sub-image wae">
+                                        <img src="logos/dsrt-wae.png" alt="DSRT WAE" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=sub-image-fallback>DSRT<br>WAE</div>';">
+                                    </div>
+                                    <div class="sub-content">
+                                        <h4>DSRT WAE</h4>
+                                        <p class="sub-tagline">World Analysis Engine</p>
+                                        <p class="sub-description">
+                                            An early attempt at a unified analysis engine ingesting diverse global sources — news, economic indicators, geopolitical events, scientific developments — into integrated cross-domain assessments. Built initial multi-modal data fusion modules but the scope exceeded the engineering foundation available. <strong>WAE's vision lives on in DSRT INTEL</strong>, executed properly with narrower scope, deeper engineering, fine-tuned models, and structured citation.
+                                        </p>
+                                        <div class="sub-tech">
+                                            <span class="sub-tech-tag">Multi-Modal Fusion</span>
+                                            <span class="sub-tech-tag">Conceptual Prototype</span>
+                                            <span class="sub-tech-tag">Evolved → INTEL</span>
+                                        </div>
+                                        <a href="#projects" class="sub-link">Read the lessons →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-date">2024 — Present</div>
-                <div class="timeline-logo robotic">RR</div>
-                <div class="timeline-content">
-                    Founding member of <a href="#">Robotic Rocks</a>, where the mission is to build AI-native hardware for enterprises. Working on the integration layer between intelligent software systems and physical infrastructure — the kind of systems that need both deep engineering and modern AI to function.
+                
+                <!-- ROBOTIC ROCKS -->
+                <div class="timeline-entry">
+                    <div class="timeline-marker robotic text">
+                        <img src="logos/robotic-rocks-logo.png" alt="Robotic Rocks" onerror="this.style.display='none'; this.parentElement.innerHTML='RR';">
+                    </div>
+                    
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title-block">
+                                <h3>Robotic Rocks</h3>
+                                <p class="timeline-role">Founder</p>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="timeline-period">2024 — Present</span>
+                                <span class="timeline-status">Active</span>
+                            </div>
+                        </div>
+                        
+                        <p class="timeline-description">
+                            Founded with the ambition to build <strong>AI-native hardware and autonomous systems</strong> — the integration layer between intelligent software and physical infrastructure. Robotic Rocks builds foundational technology that powers next-generation industrial automation: hardware designed from the ground up for AI workloads, not retrofitted from legacy systems. This is the parent vision that gave birth to DSRT AI Systems as its software venture.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-date">2024</div>
-                <div class="timeline-logo">EXP</div>
-                <div class="timeline-content">
-                    Early experiments: <strong>DSRT CEOS</strong> (Construction Enterprise Operating System) and <strong>DSRT WAE</strong> (World Analysis Engine). Both projects attempted to build enterprise-scale AI systems before I had the engineering depth to execute them properly.
-                    <br><br>
-                    Both experiments failed at execution but succeeded as calibration. They taught me that vision without engineering depth is just architecture diagrams. These experiments directly shaped the current technical direction of DSRT: build the foundation deeply, then build the systems.
-                </div>
+                
             </div>
         </section>
 
         <!-- EDUCATION -->
-        <section class="section">
+        <section class="section" id="education">
             <h2 class="section-title">education</h2>
             
-            <div class="timeline-item">
-                <div class="timeline-date">2024 — 2028</div>
-                <div class="timeline-logo">B.Tech</div>
-                <div class="timeline-content">
-                    B.Tech in Electrical Engineering at a government engineering college in India. Coursework that has shaped DSRT's technical foundation: <strong>Signals & Systems, Linear Algebra, Probability Theory, Electrical Machines, Power Systems Analysis, Control Systems, and Electromagnetic Theory</strong>.
-                    <br><br>
-                    Outside coursework, I spend most of my time building DSRT systems, contributing to open source, and teaching AI through writing and video.
+            <!-- B.Tech -->
+            <div class="edu-card">
+                <div class="edu-left">
+                    <div class="edu-logo">B.Tech</div>
+                    <div class="edu-date">2025 — 2029</div>
+                </div>
+                <div class="edu-right">
+                    <h3>Bachelor of Technology</h3>
+                    <p class="edu-institution">Electrical Engineering</p>
+                    <p class="edu-description">
+                        Building a strong foundation in <strong>electrical engineering</strong> while parallelly pursuing advanced AI systems research. Core coursework spans the mathematical and physical principles that underpin modern intelligent infrastructure — the same principles powering DSRT's product line.
+                    </p>
+                    <div class="edu-tags">
+                        <span class="edu-tag">Signals & Systems</span>
+                        <span class="edu-tag">Linear Algebra</span>
+                        <span class="edu-tag">Probability Theory</span>
+                        <span class="edu-tag">Electrical Machines</span>
+                        <span class="edu-tag">Power Systems Analysis</span>
+                        <span class="edu-tag">Control Systems</span>
+                        <span class="edu-tag">Electromagnetic Theory</span>
+                        <span class="edu-tag">Power Electronics</span>
+                        <span class="edu-tag">Digital Signal Processing</span>
+                        <span class="edu-tag">Advanced AI Systems</span>
+                        <span class="edu-tag">Deep Learning</span>
+                        <span class="edu-tag">Embedded Systems</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- School -->
+            <div class="edu-card">
+                <div class="edu-left">
+                    <div class="edu-logo school">SKS</div>
+                    <div class="edu-date">Apr 2015 — May 2025</div>
+                </div>
+                <div class="edu-right">
+                    <h3>S.K.S. Public School</h3>
+                    <p class="edu-institution">Primary & Higher Secondary Education</p>
+                    <p class="edu-description">
+                        Completed school with <strong>95.6% in 10th grade</strong> and <strong>78% in 12th grade</strong>. Beyond academics, this is where I began my journey into engineering and computer science — self-taught <strong>full-stack development</strong> (HTML, CSS, Django) and <strong>data science</strong> (Python, Scikit-Learn, Pandas), shipping my first real projects before college.
+                    </p>
+                    <div class="edu-tags">
+                        <span class="edu-tag achievement">🥈 IMO Silver Medalist</span>
+                        <span class="edu-tag achievement">🥇 4× Gold in Painting</span>
+                        <span class="edu-tag achievement">🥈 2× Silver in Painting</span>
+                        <span class="edu-tag">Django</span>
+                        <span class="edu-tag">Python</span>
+                        <span class="edu-tag">Scikit-Learn</span>
+                        <span class="edu-tag">Pandas</span>
+                        <span class="edu-tag">Full-Stack Dev</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- PROJECTS -->
-<section class="section">
-    <h2 class="section-title">projects</h2>
-    <p style="color: #666; margin-bottom: 30px; font-size: 15px;">
-        All projects are open source on <a href="https://github.com/Jisu-tech" style="color: #1a1a1a; border-bottom: 1px solid #999; text-decoration: none;">GitHub</a> with live demos, technical writeups, and reproducible code.
-    </p>
-    
-    <!-- DSRT GRID -->
-    <div class="project">
-        <div class="project-icon">
-            <img src="logos/dsrt-grid.png" alt="DSRT GRID" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=project-icon-placeholder>DSRT<br>GRID</div>';">
-        </div>
-        <div class="project-content">
-            <h3><a href="#">DSRT GRID — Non-Intrusive Load Monitoring System</a></h3>
-            <p>A signal intelligence system that disaggregates total electrical consumption from a single main meter into individual appliance-level consumption — no per-appliance sensors required. Reads the orchestra and identifies every instrument.</p>
-            <p><strong>What I built:</strong> Complete end-to-end pipeline from raw electrical signal ingestion through deep learning inference to API serving. Custom event detection module identifies appliance switching events using signal derivative analysis. Built an appliance signature library that captures unique electrical fingerprints across power, harmonics, and transient behavior. Designed a hybrid 1D CNN + Transformer architecture for sequence-to-sequence disaggregation, with an energy conservation constraint built into the loss function ensuring sum of predicted appliance consumptions equals total measured consumption. Implemented Monte Carlo Dropout for uncertainty quantification — every prediction comes with calibrated confidence intervals.</p>
-            <p><strong>Architecture:</strong> 1D CNN + Transformer hybrid · PyTorch · Trained on UK-DALE dataset · FastAPI backend · Streamlit dashboard · Docker deployment</p>
-            <div class="project-links">
-                <a href="#">Live Demo →</a>
-                <a href="#">GitHub →</a>
-                <a href="#">Technical Writeup →</a>
+        <section class="section" id="projects">
+            <h2 class="section-title">projects</h2>
+            <p style="color: #666; margin-bottom: 30px; font-size: 15px;">
+                All projects are open source on <a href="https://github.com/Jisu-tech" style="color: #1a1a1a; border-bottom: 1px solid #999; text-decoration: none;">GitHub</a> with live demos, technical writeups, and reproducible code.
+            </p>
+            
+            <div class="project">
+                <div class="project-icon grid">DSRT<br>GRID</div>
+                <div class="project-content">
+                    <h3><a href="#">DSRT GRID — Non-Intrusive Load Monitoring System</a></h3>
+                    <p>A signal intelligence system that disaggregates total electrical consumption from a single main meter into individual appliance-level consumption — no per-appliance sensors required. Reads the orchestra and identifies every instrument.</p>
+                    <p><strong>What I built:</strong> Complete end-to-end pipeline from raw electrical signal ingestion through deep learning inference to API serving. Custom event detection module identifies appliance switching events using signal derivative analysis. Built an appliance signature library that captures unique electrical fingerprints across power, harmonics, and transient behavior. Designed a hybrid 1D CNN + Transformer architecture for sequence-to-sequence disaggregation, with an energy conservation constraint built into the loss function ensuring sum of predicted appliance consumptions equals total measured consumption. Implemented Monte Carlo Dropout for uncertainty quantification — every prediction comes with calibrated confidence intervals.</p>
+                    <p><strong>Architecture:</strong> 1D CNN + Transformer hybrid · PyTorch · Trained on UK-DALE dataset · FastAPI backend · Streamlit dashboard · Docker deployment</p>
+                    <div class="project-links">
+                        <a href="#">Live Demo →</a>
+                        <a href="#">GitHub →</a>
+                        <a href="#">Technical Writeup →</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- DSRT FAULT -->
-    <div class="project">
-        <div class="project-icon">
-            <img src="logos/dsrt-fault.png" alt="DSRT FAULT" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=project-icon-placeholder>DSRT<br>FAULT</div>';">
-        </div>
-        <div class="project-content">
-            <h3><a href="#">DSRT FAULT — Adversarial-Robust Grid State Estimation</a></h3>
-            <p>A Graph Attention Network for real-time estimation of complete power grid state — voltage magnitude and phase angle at every bus — from incomplete, noisy, and potentially adversarial sensor measurements. Built to handle cyberattack scenarios where traditional weighted-least-squares state estimators fail.</p>
-            <p><strong>What I built:</strong> Complete grid modeling pipeline using IEEE 14-bus, 30-bus, and 118-bus test systems via PYPOWER simulation. Generated 100K training scenarios covering normal operations, sensor failures, and adversarial false data injection attacks. Built multi-head Graph Attention Network from scratch in PyTorch Geometric — each node aggregates information from connected buses using learned attention weights. Encoded power flow equations and Kirchhoff's laws as physics-informed loss terms, ensuring predictions respect electrical reality. Implemented adversarial training pipeline where attack scenarios are generated dynamically during training to make the model robust to never-before-seen attack vectors.</p>
-            <p><strong>Architecture:</strong> Graph Attention Network · PyTorch Geometric · Physics-Informed Loss · PYPOWER simulation · IEEE test systems · Adversarial training</p>
-            <div class="project-links">
-                <a href="#">Live Demo →</a>
-                <a href="#">GitHub →</a>
-                <a href="#">Technical Writeup →</a>
+            
+            <div class="project">
+                <div class="project-icon fault">DSRT<br>FAULT</div>
+                <div class="project-content">
+                    <h3><a href="#">DSRT FAULT — Adversarial-Robust Grid State Estimation</a></h3>
+                    <p>A Graph Attention Network for real-time estimation of complete power grid state — voltage magnitude and phase angle at every bus — from incomplete, noisy, and potentially adversarial sensor measurements.</p>
+                    <p><strong>What I built:</strong> Complete grid modeling pipeline using IEEE 14-bus, 30-bus, and 118-bus test systems via PYPOWER simulation. Generated 100K training scenarios covering normal operations, sensor failures, and adversarial false data injection attacks. Built multi-head Graph Attention Network from scratch in PyTorch Geometric. Encoded power flow equations and Kirchhoff's laws as physics-informed loss terms. Implemented adversarial training pipeline.</p>
+                    <p><strong>Architecture:</strong> Graph Attention Network · PyTorch Geometric · Physics-Informed Loss · PYPOWER · Adversarial training</p>
+                    <div class="project-links">
+                        <a href="#">Live Demo →</a>
+                        <a href="#">GitHub →</a>
+                        <a href="#">Technical Writeup →</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- DSRT SIM -->
-    <div class="project">
-        <div class="project-icon">
-            <img src="logos/dsrt-sim.png" alt="DSRT SIM" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=project-icon-placeholder>DSRT<br>SIM</div>';">
-        </div>
-        <div class="project-content">
-            <h3><a href="#">DSRT SIM — Neural Surrogate for Circuit Simulation</a></h3>
-            <p>A physics-informed neural network that replaces traditional SPICE-based circuit simulation. Predicts circuit waveforms 1000x faster than the reference simulator while preserving physical accuracy. Generalizes to circuit topologies not seen during training, enabling real-time circuit optimization workflows previously impossible.</p>
-            <p><strong>What I built:</strong> Automated data generation pipeline using NGSpice to simulate thousands of circuit configurations across varying topologies, component values, and operating conditions. Built a Fourier Neural Operator architecture from scratch — chosen because circuit responses live naturally in frequency space. Encoded Kirchhoff's voltage and current laws as soft constraints in the loss function, so the network learns physics not just patterns. Made the entire system end-to-end differentiable, enabling downstream gradient-based circuit optimization — you can backpropagate through the simulator to optimize component values for target specifications. Benchmarked extensively against NGSpice across hundreds of held-out circuit configurations.</p>
-            <p><strong>Architecture:</strong> Fourier Neural Operator · Physics-Informed Neural Network · PyTorch · NGSpice integration · End-to-end differentiable</p>
-            <div class="project-links">
-                <a href="#">Live Demo →</a>
-                <a href="#">GitHub →</a>
-                <a href="#">Technical Writeup →</a>
+            
+            <div class="project">
+                <div class="project-icon sim">DSRT<br>SIM</div>
+                <div class="project-content">
+                    <h3><a href="#">DSRT SIM — Neural Surrogate for Circuit Simulation</a></h3>
+                    <p>A physics-informed neural network that replaces traditional SPICE-based circuit simulation. Predicts circuit waveforms 1000x faster than the reference simulator while preserving physical accuracy.</p>
+                    <p><strong>What I built:</strong> Automated data generation pipeline using NGSpice. Built a Fourier Neural Operator architecture from scratch — chosen because circuit responses live naturally in frequency space. Encoded Kirchhoff's voltage and current laws as soft constraints. Made the entire system end-to-end differentiable, enabling downstream gradient-based circuit optimization.</p>
+                    <p><strong>Architecture:</strong> Fourier Neural Operator · Physics-Informed Neural Network · PyTorch · NGSpice · End-to-end differentiable</p>
+                    <div class="project-links">
+                        <a href="#">Live Demo →</a>
+                        <a href="#">GitHub →</a>
+                        <a href="#">Technical Writeup →</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- DSRT INTEL -->
-    <div class="project">
-        <div class="project-icon">
-            <img src="logos/dsrt-intel.png" alt="DSRT INTEL" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=project-icon-placeholder>DSRT<br>INTEL</div>';">
-        </div>
-        <div class="project-content">
-            <h3><a href="#">DSRT INTEL — Multi-Source Technical Intelligence System</a></h3>
-            <p>An AI system that ingests technical literature, regulatory filings, satellite data, news feeds, and economic indicators to produce structured intelligence assessments on industrial and technical topics. Built for decision-makers who need sourced, citable analysis at scale — not chatbot responses.</p>
-            <p><strong>What I built:</strong> Multi-source ingestion pipeline pulling from ArXiv, NewsAPI, SEC filings, Sentinel Hub satellite data, World Bank economic indicators, and curated technical sources. Built advanced RAG system with semantic chunking, hybrid retrieval (dense + BM25), cross-encoder reranking, and HyDE query transformation. Implemented multi-agent architecture using LangGraph — separate agents for research, analysis, verification, and writing, communicating to produce consensus assessments. Fine-tuned Llama 3.1 8B with QLoRA on technical intelligence report examples so the model learns the specific writing style and citation format. Built knowledge graph layer for temporal reasoning — "how has X evolved over time" queries that pure RAG cannot answer. Every output includes full source citations and confidence scores.</p>
-            <p><strong>Architecture:</strong> Multi-agent system · LangGraph · Fine-tuned Llama 3.1 (QLoRA) · Advanced RAG with reranking · Knowledge graph · Structured output with citations</p>
-            <div class="project-links">
-                <a href="#">Live Demo →</a>
-                <a href="#">GitHub →</a>
-                <a href="#">Technical Writeup →</a>
+            
+            <div class="project">
+                <div class="project-icon intel">DSRT<br>INTEL</div>
+                <div class="project-content">
+                    <h3><a href="#">DSRT INTEL — Multi-Source Technical Intelligence System</a></h3>
+                    <p>An AI system that ingests technical literature, regulatory filings, satellite data, news feeds, and economic indicators to produce structured intelligence assessments.</p>
+                    <p><strong>What I built:</strong> Multi-source ingestion pipeline pulling from ArXiv, NewsAPI, SEC filings, Sentinel Hub satellite data, World Bank indicators. Built advanced RAG with semantic chunking, hybrid retrieval, cross-encoder reranking, HyDE query transformation. Multi-agent architecture using LangGraph. Fine-tuned Llama 3.1 8B with QLoRA. Built knowledge graph layer for temporal reasoning.</p>
+                    <p><strong>Architecture:</strong> Multi-agent system · LangGraph · Fine-tuned Llama 3.1 (QLoRA) · Advanced RAG · Knowledge graph</p>
+                    <div class="project-links">
+                        <a href="#">Live Demo →</a>
+                        <a href="#">GitHub →</a>
+                        <a href="#">Technical Writeup →</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- DSRT CEOS -->
-    <div class="project">
-        <div class="project-icon">
-            <img src="logos/dsrt-ceos.png" alt="DSRT CEOS" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=project-icon-placeholder>DSRT<br>CEOS</div>';">
-        </div>
-        <div class="project-content">
-            <h3><a href="#">DSRT CEOS — Construction Enterprise Operating System</a></h3>
-            <p>An early-stage attempt at building a complete operating system for construction enterprises — covering project management, resource allocation, financial tracking, compliance, and on-site coordination in a single integrated platform.</p>
-            <p><strong>What I built:</strong> Full conceptual architecture for an enterprise-scale platform addressing the fragmented software stack most construction companies operate with. Designed the data model spanning projects, contracts, resources, personnel, equipment, materials, and compliance records. Built initial frontend prototypes covering the core workflows. Designed the API surface and database schemas. The project ultimately served as a critical learning experience — exposing the gap between architectural vision and the engineering depth required to execute enterprise systems at production quality. The lessons from CEOS directly shaped the current technical direction of DSRT AI Systems: build the engineering foundation deeply before attempting platform-scale ambition.</p>
-            <p><strong>Status:</strong> Conceptual prototype · Foundation for DSRT's engineering principles · Lessons applied to current product suite</p>
-            <div class="project-links">
-                <a href="#">Project Notes →</a>
-                <a href="#">GitHub →</a>
+            
+            <div class="project">
+                <div class="project-icon" style="background: linear-gradient(135deg, #ff6600 0%, #993d00 100%);">DSRT<br>CEOS</div>
+                <div class="project-content">
+                    <h3><a href="#">DSRT CEOS — Construction Enterprise Operating System</a></h3>
+                    <p>An early-stage attempt at building a complete operating system for construction enterprises — covering project management, resource allocation, financial tracking, compliance, and on-site coordination in a single integrated platform.</p>
+                    <p><strong>What I built:</strong> Full conceptual architecture for an enterprise-scale platform. Designed the data model spanning projects, contracts, resources, personnel, equipment, materials, and compliance records. The lessons directly shaped DSRT's current technical direction: build the engineering foundation deeply before attempting platform-scale ambition.</p>
+                    <p><strong>Status:</strong> Conceptual prototype · Foundation for DSRT's engineering principles</p>
+                    <div class="project-links">
+                        <a href="#">Project Notes →</a>
+                        <a href="#">GitHub →</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- DSRT WAE -->
-    <div class="project">
-        <div class="project-icon">
-            <img src="logos/dsrt-wae.png" alt="DSRT WAE" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=project-icon-placeholder>DSRT<br>WAE</div>';">
-        </div>
-        <div class="project-content">
-            <h3><a href="#">DSRT WAE — World Analysis Engine</a></h3>
-            <p>An ambitious early attempt at building a unified analysis engine capable of ingesting diverse global data sources — news, economic indicators, geopolitical events, scientific developments — and producing integrated analytical assessments across domains.</p>
-            <p><strong>What I built:</strong> Designed the conceptual architecture for a multi-modal data fusion system spanning text, structured data, and time series across multiple domains. Built initial data ingestion modules for several source types. Prototyped early analysis workflows. The project's scope ultimately exceeded what the available technical foundation could support — teaching the critical lesson that ambitious cross-domain systems require both broad data engineering depth and specialized ML capability that must be built systematically rather than assembled. WAE's vision lives on in DSRT INTEL, which is the same idea executed properly: narrower scope (technical and industrial intelligence), deeper engineering, fine-tuned models, multi-agent reasoning, and structured outputs with full citation.</p>
-            <p><strong>Status:</strong> Conceptual prototype · Vision evolved into DSRT INTEL · Foundation for multi-source intelligence work</p>
-            <div class="project-links">
-                <a href="#">Project Notes →</a>
-                <a href="#">GitHub →</a>
+            
+            <div class="project">
+                <div class="project-icon" style="background: linear-gradient(135deg, #00aacc 0%, #006680 100%);">DSRT<br>WAE</div>
+                <div class="project-content">
+                    <h3><a href="#">DSRT WAE — World Analysis Engine</a></h3>
+                    <p>An ambitious early attempt at building a unified analysis engine capable of ingesting diverse global data sources and producing integrated analytical assessments across domains.</p>
+                    <p><strong>What I built:</strong> Designed the conceptual architecture for a multi-modal data fusion system spanning text, structured data, and time series. WAE's vision lives on in DSRT INTEL, executed properly.</p>
+                    <p><strong>Status:</strong> Conceptual prototype · Vision evolved into DSRT INTEL</p>
+                    <div class="project-links">
+                        <a href="#">Project Notes →</a>
+                        <a href="#">GitHub →</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+
         <!-- TEACHING -->
-        <section class="section">
+        <section class="section" id="teaching">
             <h2 class="section-title">teaching</h2>
             <p style="color: #666; margin-bottom: 30px; font-size: 15px;">
                 I teach deep neural networks, transformer architectures, and frontier AI concepts through written content and video. Education is part of the mission — the next generation of engineers needs both depth and access.
@@ -598,8 +1449,8 @@
             </div>
         </section>
 
-        <!-- WRITING / BLOGS -->
-        <section class="section">
+        <!-- WRITING -->
+        <section class="section" id="writing">
             <h2 class="section-title">writing</h2>
             <p style="color: #666; margin-bottom: 30px; font-size: 15px;">
                 Technical writing on what I build — engineering decisions, deep-dives, and lessons from working at the intersection of EE and AI.
@@ -621,5 +1472,41 @@
             <p>© 2025 Jisu Mondal · Built at the intersection of engineering and intelligence</p>
         </footer>
     </div>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
