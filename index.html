@@ -310,18 +310,18 @@
         }
         
         /* ========================================
-           VERTICAL TIMELINE EXPERIENCE
+           VERTICAL TIMELINE (EXPERIENCE + EDUCATION)
            ======================================== */
         .timeline {
             position: relative;
             padding-left: 0;
         }
         
-        /* Vertical line */
+        /* Vertical line - adjusted for larger markers */
         .timeline::before {
             content: '';
             position: absolute;
-            left: 39px;
+            left: 49px;
             top: 20px;
             bottom: 20px;
             width: 2px;
@@ -332,7 +332,7 @@
         .timeline-entry {
             position: relative;
             display: grid;
-            grid-template-columns: 80px 1fr;
+            grid-template-columns: 100px 1fr;
             gap: 30px;
             margin-bottom: 50px;
         }
@@ -341,34 +341,37 @@
             margin-bottom: 0;
         }
         
-        /* Logo dot on timeline */
+        /* Logo marker on timeline - LARGER NOW */
         .timeline-marker {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
             background: white;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             z-index: 2;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             border: 1px solid #e8e8e8;
             overflow: hidden;
             flex-shrink: 0;
+            padding: 6px;
         }
         
         .timeline-marker img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            border-radius: 16px;
         }
         
         .timeline-marker.text {
             font-weight: 800;
-            font-size: 16px;
+            font-size: 18px;
             color: white;
             letter-spacing: 0.5px;
+            padding: 0;
         }
         
         .timeline-marker.dsrt {
@@ -377,6 +380,16 @@
         
         .timeline-marker.robotic {
             background: linear-gradient(135deg, #0066cc 0%, #003d7a 100%);
+        }
+        
+        .timeline-marker.btech {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            font-size: 17px;
+        }
+        
+        .timeline-marker.school {
+            background: linear-gradient(135deg, #8e44ad, #5e3370);
+            font-size: 22px;
         }
         
         /* Main entry card */
@@ -455,6 +468,16 @@
             animation: pulse 2s infinite;
         }
         
+        .timeline-status.completed {
+            color: #555;
+            background: #f0f0f0;
+        }
+        
+        .timeline-status.completed::before {
+            background: #888;
+            animation: none;
+        }
+        
         @keyframes pulse {
             0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 135, 90, 0.4); }
             50% { opacity: 0.6; box-shadow: 0 0 0 4px rgba(0, 135, 90, 0); }
@@ -482,6 +505,38 @@
         .timeline-description strong {
             color: #1a1a1a;
             font-weight: 600;
+        }
+        
+        /* Education tags inside timeline card */
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 16px;
+        }
+        
+        .timeline-tag {
+            display: inline-block;
+            font-size: 12px;
+            color: #555;
+            background: #f7f7f7;
+            padding: 5px 11px;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .timeline-tag.achievement {
+            background: linear-gradient(135deg, #fff5e6, #ffe6cc);
+            color: #b8860b;
+            border-color: #f5d99a;
+            font-weight: 600;
+        }
+        
+        .timeline-tag.bronze {
+            background: linear-gradient(135deg, #fdf0e0, #f5d5b0);
+            color: #9c5a1a;
+            border-color: #e8c298;
         }
         
         /* ========================================
@@ -522,7 +577,6 @@
             padding-bottom: 0;
         }
         
-        /* Connector dot */
         .sub-entry::before {
             content: '';
             position: absolute;
@@ -561,7 +615,6 @@
             transform: translateX(4px);
         }
         
-        /* Project image area */
         .sub-image {
             width: 110px;
             height: 110px;
@@ -652,111 +705,7 @@
         }
         
         /* ========================================
-           EDUCATION
-           ======================================== */
-        .edu-card {
-            display: grid;
-            grid-template-columns: 140px 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-            padding: 30px;
-            background: #fafafa;
-            border: 1px solid #eee;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .edu-card:hover {
-            background: #ffffff;
-            border-color: #ddd;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-            transform: translateY(-2px);
-        }
-        
-        .edu-left {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 14px;
-        }
-        
-        .edu-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 15px;
-            color: white;
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-        }
-        
-        .edu-logo.school {
-            background: linear-gradient(135deg, #8e44ad, #5e3370);
-        }
-        
-        .edu-date {
-            font-size: 12px;
-            color: #888;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .edu-right h3 {
-            font-size: 22px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 4px;
-            letter-spacing: -0.3px;
-        }
-        
-        .edu-institution {
-            font-size: 15px;
-            color: #0066cc;
-            font-weight: 500;
-            margin-bottom: 14px;
-        }
-        
-        .edu-description {
-            font-size: 15px;
-            color: #444;
-            line-height: 1.75;
-        }
-        
-        .edu-description strong {
-            color: #1a1a1a;
-        }
-        
-        .edu-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 14px;
-        }
-        
-        .edu-tag {
-            display: inline-block;
-            font-size: 12px;
-            color: #555;
-            background: white;
-            padding: 4px 10px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-        
-        .edu-tag.achievement {
-            background: linear-gradient(135deg, #fff5e6, #ffe6cc);
-            color: #b8860b;
-            border-color: #f5d99a;
-        }
-        
-        /* ========================================
-           PROJECTS, TEACHING, WRITING (Unchanged)
+           PROJECTS, TEACHING, WRITING
            ======================================== */
         .project {
             display: grid;
@@ -940,21 +889,32 @@
                 width: 100%;
             }
             
-            /* Timeline mobile */
+            /* Timeline mobile - keep markers visible */
             .timeline::before {
-                left: 27px;
+                left: 34px;
             }
             
             .timeline-entry {
-                grid-template-columns: 56px 1fr;
+                grid-template-columns: 70px 1fr;
                 gap: 18px;
             }
             
             .timeline-marker {
-                width: 56px;
-                height: 56px;
-                border-radius: 14px;
-                font-size: 12px;
+                width: 70px;
+                height: 70px;
+                border-radius: 16px;
+            }
+            
+            .timeline-marker.text {
+                font-size: 14px;
+            }
+            
+            .timeline-marker.school {
+                font-size: 17px;
+            }
+            
+            .timeline-marker.btech {
+                font-size: 13px;
             }
             
             .timeline-card {
@@ -973,24 +933,6 @@
             .sub-image {
                 width: 100%;
                 height: 160px;
-            }
-            
-            .edu-card { 
-                grid-template-columns: 1fr; 
-                gap: 20px;
-                padding: 24px;
-            }
-            
-            .edu-left {
-                flex-direction: row;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-            
-            .edu-logo {
-                width: 64px;
-                height: 64px;
-                font-size: 14px;
             }
             
             .project { grid-template-columns: 1fr; }
@@ -1081,7 +1023,7 @@
                 <!-- DSRT AI SYSTEMS -->
                 <div class="timeline-entry">
                     <div class="timeline-marker dsrt text">
-                        <img src="logos/dsrt-logo.png" alt="DSRT" onerror="this.style.display='none'; this.parentElement.innerHTML='DSRT';">
+                        <img src="logos/dsrt-logo.png" alt="DSRT" onerror="this.style.display='none'; this.parentElement.innerHTML='DSRT'; this.parentElement.style.padding='0';">
                     </div>
                     
                     <div class="timeline-card">
@@ -1100,12 +1042,10 @@
                             A <a href="#">Robotic Rocks</a> venture building <strong>industrial-grade AI and automation infrastructure</strong>. DSRT develops production-ready systems where domain knowledge and machine learning intersect — power systems, signal intelligence, scientific computing, and multi-source analysis. Every system is built from first principles, deployed end-to-end, and open-sourced.
                         </p>
                         
-                        <!-- SUB-TIMELINE: DSRT PRODUCTS -->
                         <div class="sub-timeline-label">Products & Systems Built</div>
                         
                         <div class="sub-timeline">
                             
-                            <!-- DSRT GRID -->
                             <div class="sub-entry grid">
                                 <div class="sub-card">
                                     <div class="sub-image grid">
@@ -1129,7 +1069,6 @@
                                 </div>
                             </div>
                             
-                            <!-- DSRT FAULT -->
                             <div class="sub-entry fault">
                                 <div class="sub-card">
                                     <div class="sub-image fault">
@@ -1153,7 +1092,6 @@
                                 </div>
                             </div>
                             
-                            <!-- DSRT SIM -->
                             <div class="sub-entry sim">
                                 <div class="sub-card">
                                     <div class="sub-image sim">
@@ -1177,7 +1115,6 @@
                                 </div>
                             </div>
                             
-                            <!-- DSRT INTEL -->
                             <div class="sub-entry intel">
                                 <div class="sub-card">
                                     <div class="sub-image intel">
@@ -1201,7 +1138,6 @@
                                 </div>
                             </div>
                             
-                            <!-- DSRT CEOS -->
                             <div class="sub-entry ceos">
                                 <div class="sub-card">
                                     <div class="sub-image ceos">
@@ -1223,7 +1159,6 @@
                                 </div>
                             </div>
                             
-                            <!-- DSRT WAE -->
                             <div class="sub-entry wae">
                                 <div class="sub-card">
                                     <div class="sub-image wae">
@@ -1252,7 +1187,7 @@
                 <!-- ROBOTIC ROCKS -->
                 <div class="timeline-entry">
                     <div class="timeline-marker robotic text">
-                        <img src="logos/robotic-rocks-logo.png" alt="Robotic Rocks" onerror="this.style.display='none'; this.parentElement.innerHTML='RR';">
+                        <img src="logos/robotic-rocks-logo.png" alt="Robotic Rocks" onerror="this.style.display='none'; this.parentElement.innerHTML='RR'; this.parentElement.style.padding='0';">
                     </div>
                     
                     <div class="timeline-card">
@@ -1276,62 +1211,89 @@
             </div>
         </section>
 
-        <!-- EDUCATION -->
+        <!-- ========================================
+             EDUCATION - VERTICAL TIMELINE
+             ======================================== -->
         <section class="section" id="education">
             <h2 class="section-title">education</h2>
             
-            <!-- B.Tech -->
-            <div class="edu-card">
-                <div class="edu-left">
-                    <div class="edu-logo">B.Tech</div>
-                    <div class="edu-date">2025 — 2029</div>
-                </div>
-                <div class="edu-right">
-                    <h3>Bachelor of Technology</h3>
-                    <p class="edu-institution">Electrical Engineering</p>
-                    <p class="edu-description">
-                        Building a strong foundation in <strong>electrical engineering</strong> while parallelly pursuing advanced AI systems research. Core coursework spans the mathematical and physical principles that underpin modern intelligent infrastructure — the same principles powering DSRT's product line.
-                    </p>
-                    <div class="edu-tags">
-                        <span class="edu-tag">Signals & Systems</span>
-                        <span class="edu-tag">Linear Algebra</span>
-                        <span class="edu-tag">Probability Theory</span>
-                        <span class="edu-tag">Electrical Machines</span>
-                        <span class="edu-tag">Power Systems Analysis</span>
-                        <span class="edu-tag">Control Systems</span>
-                        <span class="edu-tag">Electromagnetic Theory</span>
-                        <span class="edu-tag">Power Electronics</span>
-                        <span class="edu-tag">Digital Signal Processing</span>
-                        <span class="edu-tag">Advanced AI Systems</span>
-                        <span class="edu-tag">Deep Learning</span>
-                        <span class="edu-tag">Embedded Systems</span>
+            <div class="timeline">
+                
+                <!-- B.Tech -->
+                <div class="timeline-entry">
+                    <div class="timeline-marker btech text">
+                        <img src="logos/btech-logo.png" alt="B.Tech" onerror="this.style.display='none'; this.parentElement.innerHTML='B.Tech'; this.parentElement.style.padding='0';">
+                    </div>
+                    
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title-block">
+                                <h3>Bachelor of Technology</h3>
+                                <p class="timeline-role">Electrical Engineering</p>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="timeline-period">2025 — 2029</span>
+                                <span class="timeline-status">Pursuing</span>
+                            </div>
+                        </div>
+                        
+                        <p class="timeline-description">
+                            Building a strong foundation in <strong>electrical engineering</strong> while parallelly pursuing advanced AI systems research. Core coursework spans the mathematical and physical principles that underpin modern intelligent infrastructure — the same principles powering DSRT's product line.
+                        </p>
+                        
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Signals & Systems</span>
+                            <span class="timeline-tag">Linear Algebra</span>
+                            <span class="timeline-tag">Probability Theory</span>
+                            <span class="timeline-tag">Electrical Machines</span>
+                            <span class="timeline-tag">Power Systems Analysis</span>
+                            <span class="timeline-tag">Control Systems</span>
+                            <span class="timeline-tag">Electromagnetic Theory</span>
+                            <span class="timeline-tag">Power Electronics</span>
+                            <span class="timeline-tag">Digital Signal Processing</span>
+                            <span class="timeline-tag">Advanced AI Systems</span>
+                            <span class="timeline-tag">Deep Learning</span>
+                            <span class="timeline-tag">Embedded Systems</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- School -->
-            <div class="edu-card">
-                <div class="edu-left">
-                    <div class="edu-logo school">SKS</div>
-                    <div class="edu-date">Apr 2015 — May 2025</div>
-                </div>
-                <div class="edu-right">
-                    <h3>S.K.S. Public School</h3>
-                    <p class="edu-institution">Primary & Higher Secondary Education</p>
-                    <p class="edu-description">
-                        Completed school with <strong>95.6% in 10th grade</strong> and <strong>78% in 12th grade</strong>. Beyond academics, this is where I began my journey into engineering and computer science — self-taught <strong>full-stack development</strong> (HTML, CSS, Django) and <strong>data science</strong> (Python, Scikit-Learn, Pandas), shipping my first real projects before college.
-                    </p>
-                    <div class="edu-tags">
-                        <span class="edu-tag achievement">🥈 IMO Silver Medalist</span>
-                        <span class="edu-tag achievement">🥇 4× Gold in Painting</span>
-                        <span class="edu-tag achievement">🥈 2× Silver in Painting</span>
-                        <span class="edu-tag">Django</span>
-                        <span class="edu-tag">Python</span>
-                        <span class="edu-tag">Scikit-Learn</span>
-                        <span class="edu-tag">Pandas</span>
-                        <span class="edu-tag">Full-Stack Dev</span>
+                
+                <!-- S.K.S Public School -->
+                <div class="timeline-entry">
+                    <div class="timeline-marker school text">
+                        <img src="logos/sks-logo.png" alt="SKS" onerror="this.style.display='none'; this.parentElement.innerHTML='SKS'; this.parentElement.style.padding='0';">
+                    </div>
+                    
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-title-block">
+                                <h3>S.K.S. Public School</h3>
+                                <p class="timeline-role">Primary & Higher Secondary Education</p>
+                            </div>
+                            <div class="timeline-meta">
+                                <span class="timeline-period">Apr 2015 — May 2025</span>
+                                <span class="timeline-status completed">Completed</span>
+                            </div>
+                        </div>
+                        
+                        <p class="timeline-description">
+                            Completed school with <strong>95.6% in 10th grade</strong> and <strong>78% in 12th grade</strong>. Beyond academics, this is where I began my journey into engineering and computer science — self-taught <strong>full-stack development</strong> (HTML, CSS, Django) and <strong>data science</strong> (Python, Scikit-Learn, Pandas), shipping my first real projects before college. Also represented the school in national-level olympiads and competitive painting.
+                        </p>
+                        
+                        <div class="timeline-tags">
+                            <span class="timeline-tag achievement">🥈 IMO Silver Medalist</span>
+                            <span class="timeline-tag bronze">🥉 SOF International Science Olympiad — Bronze Medalist</span>
+                            <span class="timeline-tag achievement">🥇 4× Gold in Painting</span>
+                            <span class="timeline-tag achievement">🥈 2× Silver in Painting</span>
+                            <span class="timeline-tag">Django</span>
+                            <span class="timeline-tag">Python</span>
+                            <span class="timeline-tag">Scikit-Learn</span>
+                            <span class="timeline-tag">Pandas</span>
+                            <span class="timeline-tag">Full-Stack Dev</span>
+                        </div>
                     </div>
                 </div>
+                
             </div>
         </section>
 
